@@ -13,7 +13,7 @@ bl_info = \
     {
         "name" : "Copy Scene Render Settings",
         "author" : "Lawrence D'Oliveiro <ldo@geek-central.gen.nz>",
-        "version" : (0, 1, 0),
+        "version" : (0, 2, 0),
         "blender" : (2, 7, 9),
         "location" : "Properties → Render → Copy From Scene",
         "description" :
@@ -307,22 +307,29 @@ class CopySceneRenderAction(bpy.types.Operator) :
         #end copy_attrs
 
     #begin execute
-        copy_attrs \
-          (
-            root_name = "render",
-            src = bpy.data.scenes[context.scene.copy_render_scene].render,
-            dst = context.scene.render,
-            attrs = self.render_props
-          )
+        from_scene_name = context.scene.copy_render_scene
+        if from_scene_name != "" :
+            copy_attrs \
+              (
+                root_name = "render",
+                src = bpy.data.scenes[from_scene_name].render,
+                dst = context.scene.render,
+                attrs = self.render_props
+              )
+            status = {"FINISHED"}
+        else :
+            self.report({"ERROR"}, "No other scene")
+            status = {"CANCELLED"}
+        #end if
         return \
-            {"FINISHED"}
+            status
     #end execute
 
 #end CopySceneRenderAction
 
 class CopySceneRenderSettings(bpy.types.Panel) :
     bl_idname = "RENDER_PT_copy_render_settings"
-    bl_label = "Copy Render"
+    bl_label = "Copy Render Settings"
     bl_space_type = "PROPERTIES"
     bl_region_type = "WINDOW" # no default!
 
