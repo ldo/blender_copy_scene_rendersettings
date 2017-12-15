@@ -333,6 +333,12 @@ class CopySceneRenderSettings(bpy.types.Panel) :
     bl_space_type = "PROPERTIES"
     bl_region_type = "WINDOW" # no default!
 
+    @classmethod
+    def poll(celf, context) :
+        return \
+            context.space_data.context == "RENDER"
+    #end poll
+
     def draw(self, context) :
         the_col = self.layout.column(align = True)
         the_col.prop(context.scene, "copy_render_scene", "From Scene")
