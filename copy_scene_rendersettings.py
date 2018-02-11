@@ -25,6 +25,8 @@ bl_info = \
     }
 
 def list_other_scenes(self, context) :
+    "returns a list of enum items representing scenes in the current document" \
+    " other than the active one."
     result = tuple \
       (
         (s.name, s.name, "") for s in bpy.data.scenes if s.name != context.scene.name
@@ -39,6 +41,12 @@ def list_other_scenes(self, context) :
 class CopySceneRenderAction(bpy.types.Operator) :
     bl_idname = "scene.copy_render_settings"
     bl_label = "Copy Scene Render Settings"
+
+    # render_props is the tree-structured table of scene settings to be copied.
+    # Other dicts are subtrees that are referenced more than once.
+    # Keys are attribute names; values are None for simple values to be
+    # directly copied, or dicts denoting substructures to be recursively
+    # processed.
 
     image_format_settings_props = \
         { # ImageFormatSettings fields
