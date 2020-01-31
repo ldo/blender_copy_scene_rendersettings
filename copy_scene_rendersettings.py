@@ -13,8 +13,8 @@ bl_info = \
     {
         "name" : "Copy Scene Render Settings",
         "author" : "Lawrence D'Oliveiro <ldo@geek-central.gen.nz>",
-        "version" : (0, 3, 0),
-        "blender" : (2, 7, 9),
+        "version" : (0, 4, 0),
+        "blender" : (2, 81, 0),
         "location" : "Properties → Render → Copy From Scene",
         "description" :
             "copies render settings from another scene to this one.",
@@ -462,11 +462,18 @@ class CopySceneRenderSettings(bpy.types.Panel) :
 
     def draw(self, context) :
         the_col = self.layout.column(align = True)
-        the_col.prop(context.scene, "copy_render_scene", "From Scene")
-        the_col.operator(CopySceneRenderAction.bl_idname, "Copy")
+        the_col.prop(context.scene, "copy_render_scene", text = "From Scene")
+        the_col.operator(CopySceneRenderAction.bl_idname, text = "Copy")
     #end draw
 
 #end CopySceneRenderSettings
+
+
+_classes_ = \
+    (
+        CopySceneRenderAction,
+        CopySceneRenderSettings,
+    )
 
 def register() :
     bpy.types.Scene.copy_render_scene = bpy.props.EnumProperty \
@@ -475,11 +482,15 @@ def register() :
         name = "Scene",
         description = "Other scene from which to copy settings",
       )
-    bpy.utils.register_module(__name__)
+    for ċlass in _classes_ :
+        bpy.utils.register_class(ċlass)
+    #end for
 #end register
 
 def unregister() :
-    bpy.utils.unregister_module(__name__)
+    for ċlass in _classes_ :
+        bpy.utils.unregister_class(ċlass)
+    #end for
     if hasattr(bpy.types.Scene, "copy_render_scene") :
         delattr(bpy.types.Scene, "copy_render_scene")
     #end if
