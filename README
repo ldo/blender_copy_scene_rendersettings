@@ -1,0 +1,42 @@
+This Blender addon was created to try to plug a curious omission in
+Blender’s functionality.
+
+Much of the contents of a Blender document consists of “data blocks”,
+which contain the information for each object that is specific to the
+type of that object. You will likely be familiar with using Shift-D to
+duplicate an object, which also duplicates its data block. For
+example, when you duplicate a light in this way, this also duplicates
+the settings (power, size, node graph etc) for the light.
+
+But you can also duplicate an object with Alt-D, which creates a new
+object that continues to share the same datablock as the original
+object. So if you do this with a light, you will find that changing
+the settings for either the duplicate or the original will affect the
+other one as well. Any number of objects of the same type can share
+a datablock in this way.
+
+This characteristic is indicated in the object-type-specific tab in
+the Properties window: at the top of that, there is a popup menu that
+lets you select among the available datablocks of the same type to
+attach to that object.
+
+The World settings (including the background image) for different
+scenes in a document can also share World datablocks. While you
+cannot Shift-D or Alt-D to duplicate a World, you still get the popup
+menu in the World-specific property tab for the current scene.
+
+But this does not apply to render settings. Each scene in your
+document has its own render settings, and even though they are stored
+in the document in data structures separate from the scene block
+itself, there is no way to share them between scenes.
+
+Which is why I created this Copy Scene Render Settings addon. It adds
+a panel to the Render Properties tab, titled “Copy Render Settings”.
+When you expand this panel, you will see a popup menu titled “From
+Scene”, listing the scenes in your document other than the current
+one, and a “Copy” button below that. Simply select the scene *from*
+which you want to copy the render settings *to* this one, and click
+the Copy button. That’s it.
+
+Lawrence D'Oliveiro <ldo@geek-central.gen.nz>
+2020 March 3
