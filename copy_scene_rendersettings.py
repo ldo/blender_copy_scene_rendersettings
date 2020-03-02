@@ -3,6 +3,10 @@
 # document to the current one. There seems to be no way to share
 # render settings datablocks between scenes, so this is the next best
 # thing.
+#
+# Copyright 2020 by Lawrence D'Oliveiro <ldo@geek-central.gen.nz>.
+# Licensed under CC-BY-SA
+# <http://creativecommons.org/licenses/by-sa/4.0/>.
 #-
 
 import math
