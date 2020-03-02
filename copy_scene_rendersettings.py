@@ -13,8 +13,8 @@ bl_info = \
     {
         "name" : "Copy Scene Render Settings",
         "author" : "Lawrence D'Oliveiro <ldo@geek-central.gen.nz>",
-        "version" : (0, 4, 0),
-        "blender" : (2, 81, 0),
+        "version" : (0, 5, 0),
+        "blender" : (2, 82, 0),
         "location" : "Properties → Render → Copy From Scene",
         "description" :
             "copies render settings from another scene to this one.",
@@ -114,7 +114,7 @@ class CopySceneRenderAction(bpy.types.Operator) :
                     "normal_g" : None,
                     "normal_r" : None,
                     "normal_space" : None,
-                    # "pass_filter" readonly, contrary to docs!
+                    # "pass_filter" readonly
                     "save_mode" : None,
                     "use_automatic_name" : None,
                     "use_cage" : None,
@@ -173,7 +173,7 @@ class CopySceneRenderAction(bpy.types.Operator) :
                     "use_max_b_frames" : None,
                     "video_bitrate" : None,
                 },
-            "field_order" : None,
+            # "field_order" : None, # not in 2.8?
             # "file_extension" readonly
             "filepath" : None,
             "filter_size" : None,
@@ -181,30 +181,40 @@ class CopySceneRenderAction(bpy.types.Operator) :
             "fps_base" : None,
             "frame_map_new" : None,
             "frame_map_old" : None,
+            "hair_subdiv" : None,
+            "hair_type" : None,
             # "has_multiple_engines" readonly
             "image_settings" : image_format_settings_props,
             # "is_movie_format" readonly
             # "layers" readonly
             "line_thickness" : None,
             "line_thickness_mode" : None,
-            "motion_blur_samples" : None,
+            # "motion_blur_samples" : None, # not in 2.8?
             "motion_blur_shutter" : None,
             # "motion_blur_shutter_curve"  readonly
             "octree_resolution" : None,
             "pixel_aspect_x" : None,
             "pixel_aspect_y" : None,
-            "pixel_filter_type" : None,
+            # "pixel_filter_type" : None, # not in 2.8?
             "preview_pixel_size" : None,
             "preview_start_resolution" : None,
-            "raytrace_method" : None,
+            # "raytrace_method" : None, # not in 2.8?
             "resolution_percentage" : None,
             "resolution_x" : None,
             "resolution_y" : None,
             "sequencer_gl_preview" : None,
-            "simplify_ao_sss" : None,
+            # "simplify_ao_sss" : None, # not in 2.8?
             "simplify_child_particles" : None,
             "simplify_child_particles_render" : None,
-            "simplify_shadow_samples" : None,
+            "simplify_gpencil" : None,
+            "simplify_gpencil_blend" : None,
+            "simplify_gpencil_onplay" : None,
+            "simplify_gpencil_remove_lines" : None,
+            "simplify_gpencil_shader_fx" : None,
+            "simplify_gpencil_tint" : None,
+            "simplify_gpencil_view_fill" : None,
+            "simplify_gpencil_view_modifier" : None,
+            # "simplify_shadow_samples" : None, # not in 2.8?
             "simplify_subdivision" : None,
             "simplify_subdivision_render" : None,
             "stamp_background" : None,
@@ -217,52 +227,56 @@ class CopySceneRenderAction(bpy.types.Operator) :
             "threads_mode" : None,
             "tile_x" : None,
             "tile_y" : None,
-            "use_antialiasing" : None,
-            "use_bake_antialiasing" : None,
+            # "use_antialiasing" : None, # not in 2.8?
+            # "use_bake_antialiasing" : None, # not in 2.8?
             "use_bake_clear" : None,
             "use_bake_lores_mesh" : None,
             "use_bake_multires" : None,
-            "use_bake_normalize" : None,
+            # "use_bake_normalize" : None, # not in 2.8?
             "use_bake_selected_to_active" : None,
-            "use_bake_to_vertex_color" : None,
+            # "use_bake_to_vertex_color" : None, # not in 2.8?
             "use_bake_user_scale" : None,
             "use_border" : None,
             "use_compositing" : None,
             "use_crop_to_border" : None,
-            "use_edge_enhance" : None,
-            "use_envmaps" : None,
-            "use_fields" : None,
-            "use_fields_still" : None,
+            # "use_edge_enhance" : None, # not in 2.8?
+            # "use_envmaps" : None, # not in 2.8?
+            # "use_fields" : None, # not in 2.8?
+            # "use_fields_still" : None, # not in 2.8?
             "use_file_extension" : None,
-            "use_free_image_textures" : None,
+            # "use_free_image_textures" : None, # not in 2.8?
             "use_freestyle" : None,
             "use_full_sample" : None,
-            # "use_game_engine" readonly
-            "use_instances" : None,
-            "use_local_coords" : None,
+            # "use_game_engine" readonly # not in 2.8
+            # "use_instances" : None, # not in 2.8?
+            # "use_local_coords" : None, # not in 2.8?
             "use_lock_interface" : None,
             "use_motion_blur" : None,
             "use_multiview" : None,
             "use_overwrite" : None,
             "use_persistent_data" : None,
             "use_placeholder" : None,
-            "use_raytrace" : None,
+            # "use_raytrace" : None, # not in 2.8?
             "use_render_cache" : None,
             "use_save_buffers" : None,
             "use_sequencer" : None,
+            "use_sequencer_override_scene_strip" : None,
             "use_sequencer_gl_textured_solid" : None,
             # "use_shading_nodes" readonly
-            "use_shadows" : None,
+            # "use_shadows" : None, # not in 2.8?
             "use_simplify" : None,
-            "use_simplify_triangulate" : None,
+            "use_simplify_smoke_hires" : None,
+            # "use_simplify_triangulate" : None, # not in 2.8?
             "use_single_layer" : None,
             # "use_spherical_stereo" readonly
-            "use_sss" : None,
+            # "use_sss" : None, # not in 2.8?
             "use_stamp" : None,
             "use_stamp_camera" : None,
             "use_stamp_date" : None,
             "use_stamp_filename" : None,
             "use_stamp_frame" : None,
+            "use_stamp_frame_range" : None,
+            "use_stamp_hostname" : None,
             "use_stamp_labels" : None,
             "use_stamp_lens" : None,
             "use_stamp_marker" : None,
@@ -273,8 +287,8 @@ class CopySceneRenderAction(bpy.types.Operator) :
             "use_stamp_sequencer_strip" : None,
             "use_stamp_strip_meta" : None,
             "use_stamp_time" : None,
-            "use_textures" : None,
-            "use_world_space_shading" : None,
+            # "use_textures" : None, # not in 2.8?
+            # "use_world_space_shading" : None, # not in 2.8?
             "views" : scene_render_view_props,
                 # collection of SceneRenderView
             "views_format" : None,
@@ -282,7 +296,7 @@ class CopySceneRenderAction(bpy.types.Operator) :
     cycles_render_props = \
         { # Cycles-specific scene attributes
             "cycles" :
-                { # CyclesRenderSettings fields
+                { # CyclesRenderSettings fields -- why is there no doc page for this?
                     "aa_samples" : None,
                     "ao_bounces" : None,
                     "ao_bounces_render" : None,
@@ -368,16 +382,173 @@ class CopySceneRenderAction(bpy.types.Operator) :
                     "volume_step_size" : None,
                 },
             "cycles_curves" :
-                { # CyclesCurveRenderSettings fields
+                { # CyclesCurveRenderSettings fields -- why is there no doc page for this?
                     "cull_backfacing" : None,
-                    "maximum_width" : None,
-                    "minimum_width" : None,
+                    # "maximum_width" : None, # not in 2.8?
+                    # "minimum_width" : None, # not in 2.8?
                     "primitive" : None,
                     "resolution" : None,
                     "shape" : None,
                     "subdivisions" : None,
                     "use_curves" : None,
                 },
+        }
+    eevee_render_props = \
+        { # SceneEEVEE fields
+            "bloom_clamp" : None,
+            "bloom_color" : None,
+            "bloom_intensity" : None,
+            "bloom_knee" : None,
+            "bloom_radius" : None,
+            "bloom_threshold" : None,
+            "bokeh_max_size" : None,
+            "bokeh_threshold" : None,
+            "gi_auto_bake" : None,
+            # gi_cache_info readonly
+            "gi_cubemap_display_size" : None,
+            "gi_cubemap_resolution" : None,
+            "gi_diffuse_bounces" : None,
+            "gi_filter_quality" : None,
+            "gi_glossy_clamp" : None,
+            "gi_irradiance_display_size" : None,
+            "gi_irradiance_smoothing" : None,
+            "gi_show_cubemaps" : None,
+            "gi_show_irradiance" : None,
+            "gi_visiblity_resolution" : None,
+            "gtao_distance" : None,
+            "gtao_factor" : None,
+            "gtao_quality" : None,
+            "light_threshold" : None,
+            "motion_blur_samples" : None,
+            "motion_blur_shutter" : None,
+            "overscan_size" : None,
+            "shadow_cascade_size" : None,
+            "shadow_cube_size" : None,
+            "ssr_border_fade" : None,
+            "ssr_firefly_fac" : None,
+            "ssr_max_roughness" : None,
+            "ssr_quality" : None,
+            "ssr_thickness" : None,
+            "ssr_jitter_threshold" : None,
+            "ssr_samples" : None,
+            "taa_render_samples" : None,
+            "taa_samples" : None,
+            "use_bloom" : None,
+            "use_gtao" : None,
+            "use_gtao_bent_normals" : None,
+            "use_gtao_bounce" : None,
+            "use_motion_blur" : None,
+            "use_overscan" : None,
+            "use_shadow_high_bitdepth" : None,
+            "use_soft_shadows" : None,
+            "use_ssr" : None,
+            "use_ssr_halfres" : None,
+            "use_ssr_refraction" : None,
+            "use_taa_reprojection" : None,
+            "use_volumetric_lights" : None,
+            "use_volumetric_shadows" : None,
+            "volumetric_end" : None,
+            "volumetric_light_clamp" : None,
+            "volumetric_sample_distribution" : None,
+            "volumetric_samples" : None,
+            "volumetric_shadow_samples" : None,
+            "volumetric_start" : None,
+            "volumetric_tile_size" : None,
+        }
+    scene_props = \
+        { # Scene fields
+            # active_clip?, animation_data?
+            "audio_distance_model" : None,
+            "audio_doppler_factor" : None,
+            "audio_volume" : None,
+            # camera? cursor?
+            "cycles" : cycles_render_props["cycles"],
+            "cycles_curves" : cycles_render_props["cycles_curves"],
+            "display" :
+                {
+                    "light_direction" : None,
+                    "matcap_ssao_attenuation" : None,
+                    "matcap_ssao_distance" : None,
+                    "matcap_ssao_samples" : None,
+                    "render_aa" : None,
+                    "shading" :
+                        { # View3DShading fields
+                            "background_color" : None,
+                            "background_type" : None,
+                            "cavity_ridge_factor" : None,
+                            "cavity_type" : None,
+                            "cavity_valley_factor" : None,
+                            "color_type" : None,
+                            "curvature_ridge_factor" : None,
+                            "curvature_valley_factor" : None,
+                            # cycles?
+                            "light" : None,
+                            "object_outline_color" : None,
+                            "render_pass" : None,
+                            "selected_studio_light" :
+                                { # StudioLight fields
+                                    # has_specular_highlight_pass readonly
+                                    # index readonly
+                                    # is_user_defined readonly
+                                    # light_ambient readonly
+                                    # name readonly
+                                    # path readonly
+                                    # path_irr_cache readonly
+                                    # path_sh_cache readonly
+                                    "solid_lights" :
+                                        { # collection of UserSolidLight fields
+                                            "diffuse_color" : None,
+                                            "direction" : None,
+                                            "smooth" : None,
+                                            "specular_color" : None,
+                                            "use" : None,
+                                        },
+                                    # spherical_harmonics_coefficients readonly
+                                    # type readonly
+                                },
+                            "shadow_intensity" : None,
+                            "show_backface_culling" : None,
+                            "show_cavity" : None,
+                            "show_object_outline" : None,
+                            "show_shadows" : None,
+                            "show_specular_highlight" : None,
+                            "show_xray" : None,
+                            "show_xray_wireframe" : None,
+                            "single_color" : None,
+                            "studio_light" : None,
+                            "studiolight_background_alpha" : None,
+                            "studiolight_intensity" : None,
+                            "studiolight_rotate_z" : None,
+                            "type" : None,
+                            "use_dof" : None,
+                            "use_scene_lights" : None,
+                            "use_scene_lights_render" : None,
+                            "use_scene_world" : None,
+                            "use_scene_world_render" : None,
+                            "use_world_space_lighting" : None,
+                            "wireframe_color_type" : None,
+                            "xray_alpha" : None,
+                            "xray_alpha_wireframe" : None,
+                        },
+                    "shadow_focus" : None,
+                    "shadow_shift" : None,
+                    "viewport_aa" : None,
+                },
+            "eevee" : eevee_render_props,
+            # frame_current? frame_current_final? frame_end?
+            # frame_preview_start? frame_start? frame_step? frame_subframe?
+            # gravity? grease_pencil? is_nla_tweakmode? keying_sets? keying_sets_all?
+            # lock_frame_selection_to_range?
+            # node_tree?
+            # not objects
+            "render" : render_props,
+            # rigidbody_world? safe_areas? sequence_editor?
+            # sequencer_colorspace_settings? show_keys_from_selected_only?
+            # show_subframe? sync_mode? timeline_markers? tool_settings?
+            # transform_orientation_slots? unit_settings? use_audio? use_audio_scrub?
+            # use_gravity? use_nodes? use_preview_range? use_stamp_note?
+            # view_layers? view_settings?
+            "world" : None,
         }
 
     def execute(self, context) :
@@ -421,22 +592,11 @@ class CopySceneRenderAction(bpy.types.Operator) :
             to_scene = context.scene
             copy_attrs \
               (
-                root_name = "render",
-                src = from_scene.render,
-                dst = to_scene.render,
-                attrs = self.render_props
+                root_name = "scene",
+                src = from_scene,
+                dst = to_scene,
+                attrs = self.scene_props
               )
-            if from_scene.render.engine == "CYCLES" and to_scene.render.engine == "CYCLES" :
-                for props_name, props in self.cycles_render_props.items() :
-                    copy_attrs \
-                      (
-                        root_name = props_name,
-                        src = getattr(from_scene, props_name),
-                        dst = getattr(to_scene, props_name),
-                        attrs = props
-                      )
-                #end for
-            #end if
             status = {"FINISHED"}
         else :
             self.report({"ERROR"}, "No other scene")
